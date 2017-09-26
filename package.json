@@ -1,0 +1,22 @@
+{
+  "name": "webrtc-demo",
+  "version": "0.0.1",
+  "description": "",
+  "author": {
+    "name": "",
+    "url": ""
+  },
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "node-fs": "^0.1.7",
+    "del": "^1.2.0",
+    "jshint-stylish": "^2.0.1"
+  },
+  "scripts": {
+    "start": "node app/app.js"
+  }
+}
