@@ -21,7 +21,11 @@ app.use("/static", express.static(path.join(__dirname, "/public")));
 app.use("/lib", express.static(path.join(__dirname, "../dist")));
 
 // JSON API
-app.use("/api/auth/token", api.getAuthToken);
+app.use("/api/recording/start", api.startRecording);
+app.use("/api/recording/stop", api.stopRecording);
+app.use("/api/recording/details", api.getRecording);
+
+
 
 // Home Page
 app.use("/", routes.index);

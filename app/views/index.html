@@ -1,16 +1,26 @@
 <html>
 <head>
     <title> Demo </title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/app.css" rel="stylesheet" type="text/css">
     <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
 </head>
 <body>
 
+    <div id="controls">
+        <button id="start-recording" type="button" class="btn btn-primary">Start Recording</button>
+        <button id="stop-recording" type="button" class="btn btn-primary">Stop Recording</button>
+        <button id="details-recording" type="button" class="btn btn-primary">Get Recording details</button>
+        <button id="play-recording" type="button" class="btn btn-primary">Play Recording</button>
+    </div>
     <div id="videos">
         <div id="subscriber"></div>
         <div id="publisher"></div>
     </div>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
 </body>
 </html>
