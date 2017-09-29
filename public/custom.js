@@ -46,6 +46,16 @@ $(document).ready(function () {
                             });
                         });
 
+                        session.on('archiveStarted', function(data) {
+                            console.log('archiveStarted');
+                            console.log(data);
+                        });
+
+                        session.on('archiveStopped', function(data) {
+                            console.log('archiveStarted');
+                            console.log(data);
+                        });
+
                         // Create a publisher
                         var publisher = OT.initPublisher('ownVideo', {
                             insertMode: 'append',
@@ -103,7 +113,6 @@ $('#startRecording').click(function(e) {
         dataType: "json",
         contentType: "application/json",
         success: function (recordingMeta) {
-            console.log(recordingMeta);
             /*currentRecordingID = recordingMeta.archiveId;
             alert('Recording started');*/
             currentRecordingID = recordingMeta.id;
@@ -123,7 +132,6 @@ $('#stopRecording').click(function(e) {
         dataType: "json",
         contentType: "application/json",
         success: function (recordingMeta) {
-            console.log(recordingMeta);
             /*currentRecordingID = recordingMeta.archiveId;
             alert('Recording started');*/
         },
@@ -191,6 +199,16 @@ function setup() {
                     console.log(a);
                     console.log(b);
                 });
+            });
+
+            session.on('archiveStarted', function(data) {
+                console.log('archiveStarted');
+                console.log(data);
+            });
+
+            session.on('archiveStopped', function(data) {
+                console.log('archiveStopped');
+                console.log(data);
             });
 
             // Create a publisher
