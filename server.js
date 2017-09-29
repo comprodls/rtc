@@ -109,17 +109,18 @@ app.post('/archives/:archiveId/stop', function(req, res , next) {
 });
 
 app.use('/archives/updates', function(req, res, next) {
-    console.log(Object.keys(req));
     console.log('****************************************');
     console.log('****************************************');
     console.log(req.body);
-    pubnubAdminClient.publish({
+    console.log('****************************************');
+    console.log('****************************************');
+    /*pubnubAdminClient.publish({
         message: {
             sender: 'tokbox',
             data: req
         },
         channel: 'compro_webrtc'
-    });
+    });*/
     res.send({'message': 'Data received.'});
 });
 
