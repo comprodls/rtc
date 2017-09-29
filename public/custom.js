@@ -25,7 +25,9 @@ $(document).ready(function () {
             pubnubClient.addListener({
                 message: function(evt) {
                     var message = evt.message;
-                    if(message.sender !== uuid) {
+                    if(message.sender === 'tokbox') {
+                        console.log(message);
+                    } else if(message.sender !== uuid) {
                         var sessionId = message.sessionData.id;
                         var token = message.sessionData.token;
                         session = OT.initSession(opentokAPIKey, sessionId);

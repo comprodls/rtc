@@ -19,6 +19,7 @@ var secretKey = "sec-c-NDY0NDAwYzktMjNkNS00NDIzLTg1Y2ItYmI3MjExZjliMzU5",
     subscribeKey = 'sub-c-949b8e8e-240a-11e7-b284-02ee2ddab7fe';
 
 var app = express();
+var pubnubAdminClient;
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -29,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.post('/grant', function(req, res, next) {
-    var pubnubAdminClient = new pubNub({
+    pubnubAdminClient = new pubNub({
         publishKey: publishKey,
         subscribeKey: subscribeKey,
         secretKey: secretKey
@@ -109,6 +110,13 @@ app.post('/archives/:archiveId/stop', function(req, res , next) {
 
 app.use('/archives/updates', function(req, res, next) {
     console.log(req);
+    pubnubAdminClient.publish({
+        message: {
+            sender: 'tokbox',
+            data: req
+        },
+        channel: 'compro_webrtc'
+    });
     res.send({'message': 'Data received.'});
 });
 
