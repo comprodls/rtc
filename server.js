@@ -109,7 +109,10 @@ app.post('/archives/:archiveId/stop', function(req, res , next) {
 });
 
 app.use('/archives/updates', function(req, res, next) {
-    console.log(req);
+    console.log(Object.keys(req));
+    console.log('****************************************');
+    console.log('****************************************');
+    console.log(req.body);
     pubnubAdminClient.publish({
         message: {
             sender: 'tokbox',
