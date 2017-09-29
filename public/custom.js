@@ -94,15 +94,17 @@ $('#startRecording').click(function(e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
-        url: '/recordings/start',
+        url: '/archives/start',
         data: JSON.stringify({
             sessionId: activeSessionId
         }),
         dataType: "json",
         contentType: "application/json",
         success: function (recordingMeta) {
-            currentRecordingID = recordingMeta.archiveId;
-            alert('Recording started');
+            console.log(recordingMeta);
+            /*currentRecordingID = recordingMeta.archiveId;
+            alert('Recording started');*/
+            currentRecordingID = recordingMeta.id;
         },
         error: function (grantApiError) {
             console.log(grantApiError);
@@ -114,13 +116,14 @@ $('#stopRecording').click(function(e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
-        url: '/recordings/' + currentRecordingID + '/stop',
+        url: '/archives/' + currentRecordingID + '/stop',
         data: JSON.stringify({}),
         dataType: "json",
         contentType: "application/json",
         success: function (recordingMeta) {
-            currentRecordingID = recordingMeta.archiveId;
-            alert('Recording started');
+            console.log(recordingMeta);
+            /*currentRecordingID = recordingMeta.archiveId;
+            alert('Recording started');*/
         },
         error: function (error) {
             console.log(error);

@@ -76,6 +76,42 @@ app.get('/sessions/:sessionId', function(req, res , next) {
     }
 });
 
+app.post('/archives/start', function(req, res , next) {
+    var sessionId = req.body.sessionId;
+    otClient.startArchive(sessionId, { name: 'Tokbox Test Archive' }, function(err, archive) {
+        if (err) {
+            next(err);
+        } else {
+            // The id property is useful to save off into a database
+            return res.status(200).send(archive);
+        }
+    });
+});
+
+app.get('/archives', function(req, res , next) {
+    res.send("OK");
+});
+
+app.get('/archives/:archiveID', function(req, res , next) {
+    res.send("OK");
+});
+
+app.post('/archives/:archiveId/stop', function(req, res , next) {
+    var archiveId = req.params.archiveId;
+    otClient.stopArchive(archiveId, function(err, archive) {
+        if (err) {
+            next(err);
+        } else {
+            return res.status(200).send(archive);
+        }
+    });
+});
+
+app.use('/archives/updates', function(req, res, next) {
+    console.log(req);
+    res.send({'message': 'Data received.'});
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
