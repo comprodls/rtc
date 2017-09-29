@@ -1,23 +1,26 @@
 {
-  "name": "webrtc-demo",
-  "version": "0.0.1",
+  "name": "dls-temp-rtc",
+  "version": "1.0.0",
   "description": "",
-  "author": {
-    "name": "",
-    "url": ""
-  },
-  "dependencies": {
-    "body-parser": "^1.13.3",
-    "express": "^4.13.3",
-    "opentok": "^2.6.0",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
-    "node-fs": "^0.1.7",
-    "del": "^1.2.0",
-    "jshint-stylish": "^2.0.1"
-  },
+  "main": "server.js",
   "scripts": {
-    "start": "node app/app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/comprodls/dls-temp-rtc/issues"
+  },
+  "homepage": "https://github.com/comprodls/dls-temp-rtc#readme",
+  "dependencies": {
+    "express": "~4.9.0",
+    "body-parser": "~1.8.1",
+    "cookie-parser": "~1.3.3",
+    "morgan": "~1.3.0",
+    "serve-favicon": "~2.1.3",
+    "debug": "~2.0.0",
+    "pubnub": "*",
+    "opentok": "^2.6.0"
   }
 }

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>WebRTC Demo App</title>
+        <link rel="stylesheet" type="text/css" href="custom.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>WebRTC Demo App</h1>
+            <div id="ownVideo" ></div>
+            <div id="remoteVideo" ></div>
+            <br>
+            <ol id="onlineUsers">
+            </ol>
+            <br>
+            <ol id="recordingList">
+            </ol>
+            <button id="startRecording">Start Recording</button>
+            <button id="stopRecording">Stop Recording</button>
+            <button id="refreshRecordingList">Refresh Recording List</button>
+            <button id="playRecordings">Play Recording</button>
+            <button id="disconnectButton">Disconnect</button>
+        </div>
+    </body>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.15.1.min.js"></script>
+    <script type="text/javascript" src="custom.js"></script>
+</html>
