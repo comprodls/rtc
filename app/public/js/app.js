@@ -1,19 +1,19 @@
 // replace these values with those generated in your TokBox Account
 var apiKey = "45965982";
 var sessionId = {
-    room_1: "1_MX40NTk2NTk4Mn5-MTUwNzU2MDkyMjgyNH5DR3JOZWtoWkIzR2lDU01DMWsyTVJDaHZ-fg",
-    room_2: "1_MX40NTk2NTk4Mn5-MTUwNzU1NjI3ODAzMn5Xd0FMTG43d3lDS21IZVBwMmowbm5vMjV-fg",
-    room_3: "2_MX40NTk2NTk4Mn5-MTUwNzU1NjM1MzYwNX45ZkhpUC9ySXRKVFFrbUpoVEtPV2czZkV-fg",
-    room_4: "1_MX40NTk2NTk4Mn5-MTUwNzU1NjM5NTg1NH5LNXphcnBjYmdPelZCM1c0ZTl3UFR3QXl-fg",
-    room_5: "1_MX40NTk2NTk4Mn5-MTUwNzU1NjQxMjk0N344R3YrL1o1VDdZelB6MXNpQ2M2Rk1oaFJ-fg"
+    room_1: "2_MX40NTk2NTk4Mn5-MTUwNzYxMjkzNTIwMX5FRU5nODB0YlRWRkNYYy8wekZKUk1PVnF-fg",
+    room_2: "1_MX40NTk2NTk4Mn5-MTUwNzYxMjk3ODU0NH5zaUdjektzS0hWeG5lc1hDSmFKV3BQbTJ-fg",
+    room_3: "1_MX40NTk2NTk4Mn5-MTUwNzYxMzAxNTQ0OH5jYmxNVnpodlR2TXh1WW9idHFjSzBVNTR-fg",
+    room_4: "1_MX40NTk2NTk4Mn5-MTUwNzYxMzA0MjkxNn50c1lmWVlNWHpGTHoydnZPdTdpY2Fmelp-fg",
+    room_5: "1_MX40NTk2NTk4Mn5-MTUwNzYxMzA5MDczNH5XSzA1djIydW54eEhVMmc0eXJ0U0E3dFh-fg"
 };
 
 var token = {
-    room_1: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9ZDIzNjg0MmQwOGFhZTZjYjBlMWQ3MzgzYTg0N2E3ZTVmYjUyZjhlMDpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOelUyTURreU1qZ3lOSDVEUjNKT1pXdG9Xa0l6UjJsRFUwMURNV3N5VFZKRGFIWi1mZyZjcmVhdGVfdGltZT0xNTA3NTYwOTI4Jm5vbmNlPTAuMjgxNTk2OTE3MTIyOTkyNiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTA3NTY0NTI4JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
-    room_2: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9YjYyYWFiMzkxOTQzMmRjYTVjNDNjNDg4MjU1MmViNWEzMjRjNzhjYzpzZXNzaW9uX2lkPTJfTVg0ME5UazJOVGs0TW41LU1UVXdOelUxTmpFNU5EVTROWDVFZVhrcmFHSnViUzlMUVVWQmJHRnZSMlJCZVRBM2JYUi1mZyZjcmVhdGVfdGltZT0xNTA3NTU2MjY0Jm5vbmNlPTAuMjY0MjkyMDA1MTE2MDM0NDYmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwNzU1OTg2NCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==",
-    room_3: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9MDgyMDEzMTg1YTVjNmQzMjZmZTIyYjE4YjU5ZTg3YTE3YzNlYzViMDpzZXNzaW9uX2lkPTJfTVg0ME5UazJOVGs0TW41LU1UVXdOelUxTmpNMU16WXdOWDQ1WmtocFVDOXlTWFJLVkZGcmJVcG9WRXRQVjJjelprVi1mZyZjcmVhdGVfdGltZT0xNTA3NTU2Mzg0Jm5vbmNlPTAuMTg4OTUzNTgwNTg5MjU1MDQmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwNzU1OTk4MyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==",
-    room_4: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9NzUyYzVjMjM5ZTk0YmFhZGQ0NzI4ZjJhMzZhZjMzZjNhZjBjNDI4NDpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOelUxTmpNNU5UZzFOSDVMTlhwaGNuQmpZbWRQZWxaQ00xYzBaVGwzVUZSM1FYbC1mZyZjcmVhdGVfdGltZT0xNTA3NTU2NDAwJm5vbmNlPTAuMDE1NzY4MjAwNTI2NzE5Njc4JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1MDc1NjAwMDAmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=",
-    room_5: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9ZTdlNTJjYmViYmEwYzQ2NGYxNDBmYjBiMDE1YzRmNGMwMTBhZmY1MTpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOelUxTmpReE1qazBOMzQ0UjNZckwxbzFWRGRaZWxCNk1YTnBRMk0yUmsxb2FGSi1mZyZjcmVhdGVfdGltZT0xNTA3NTU2NDE3Jm5vbmNlPTAuNTE2MjI2NjUwNjQwMTE2NyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTA3NTYwMDE2JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
+    room_1: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9ODI3Mjc0NGNjMjUxMGNlNmQ3MjYxMDE1N2Q1NTY2ODM5YzJhMjhkNzpzZXNzaW9uX2lkPTJfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TWprek5USXdNWDVGUlU1bk9EQjBZbFJXUmtOWVl5OHdla1pLVWsxUFZuRi1mZyZjcmVhdGVfdGltZT0xNTA3NjEyOTQ2Jm5vbmNlPTAuMjM3Nzk4NTY1NzgzNjE0NTgmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUxMDIwNDk0NSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==",
+    room_2: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9MDk2YWE4MzhiOTY0YTg1NDNiZjhkYjhkN2E3ZDBjM2IyZDkzOTZhNjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TWprM09EVTBOSDV6YVVkamVrdHpTMGhXZUc1bGMxaERTbUZLVjNCUWJUSi1mZyZjcmVhdGVfdGltZT0xNTA3NjEyOTg4Jm5vbmNlPTAuOTExNzM3ODcwNzEyNjEzNiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA0OTg3JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
+    room_3: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9ZTM1OWY5YzQxZTM5YTRiNGY4OGI1ZjU5ZTc3Y2RhMDgyOGM5ZmY5YjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TXpBeE5UUTBPSDVqWW14TlZucG9kbFIyVFhoMVdXOWlkSEZqU3pCVk5UUi1mZyZjcmVhdGVfdGltZT0xNTA3NjEzMDI0Jm5vbmNlPTAuNjA3MzY2Nzg0Nzk3MDk0OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA1MDIzJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
+    room_4: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9MzRkOWJmZDM1MGEwMDZhNTFlMjUzM2U2NDJjZmE1Y2QxZTNjYzJlZTpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TXpBME1qa3hObjUwYzFsbVdWbE5XSHBHVEhveWRuWlBkVGRwWTJGbWVscC1mZyZjcmVhdGVfdGltZT0xNTA3NjEzMDQ5Jm5vbmNlPTAuNzQ4MjI4ODYwNTM1MTc0MSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA1MDQ5JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
+    room_5: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9MWUzZGE3NDk0ODAxMTMzNTdhM2Y2Mjc0NzU0NDEyNTMyOWY0MGZiZjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TXpBNU1EY3pOSDVYU3pBMWRqSXlkVzU0ZUVoVk1tYzBlWEowVTBFM2RGaC1mZyZjcmVhdGVfdGltZT0xNTA3NjEzMDk3Jm5vbmNlPTAuOTQxOTE2MjQ4OTcyNTczMiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA1MDk2JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
 };
 
 var archiveId = "";
@@ -23,7 +23,7 @@ var recordingURL = "", session, subscriber, debugInfo = {}, dropdown;
 function handleError(error) {
   if (error) {
     resetUI();
-    alert(error.message);
+    alert(JSON.stringify(error, 0, 4));
   }
 }
 
@@ -47,8 +47,6 @@ function initializeSession(apiKey, sessionId, token) {
       width: "100%",
       height: "100%"
     }, handleError);
-    console.log('event');
-    console.log(event);
     debugInfo["ice-servers"] = event.target.sessionInfo.iceServers;
     debugInfo["priority-video-codec"] = event.target.sessionInfo.priorityVideoCodec;
     debugInfo["media-server-name"] = event.target.sessionInfo.mediaServerName;
@@ -64,10 +62,10 @@ function initializeSession(apiKey, sessionId, token) {
   });
 
   // Create a publisher
-  var publisher = OT.initPublisher('publisher', {
-    insertMode: 'append',
-    width: '100%',
-    height: '100%'
+  var publisher = OT.initPublisher("publisher", {
+    insertMode: "append",
+    width: "100%",
+    height: "100%"
   }, handleError);
 
   // Connect to the session
@@ -85,20 +83,16 @@ $("#connect").click(function(e) {
 
   if(!session) {
     e.preventDefault();
-
     dropdown = $("#chat_rooms").val();
 
-    // (optional) add server code here
+    // Call to initialise session
     initializeSession(apiKey, sessionId[dropdown], token[dropdown]);
-
-  console.log(sessionId[dropdown]);
-  console.log(token[dropdown]);
 
     $("#connect").hide();
     $("#disconnect").show();
     $("#start-recording").prop("disabled", false);
   } else {
-    alert("Session Already Created.")
+    alert("Session Already Created. Please disconnect or refresh the page.");
   }
 
 });
@@ -128,14 +122,14 @@ $("#start-recording").click(function (e) {
         "contentType": "application/json",
         "success": function (data) {
             console.log(data);
-            alert(JSON.stringify(data));
+            alert(JSON.stringify(data, 0, 4));
             archiveId = data.id;
             $("#start-recording").hide();
             $("#stop-recording").show();
         },
         "error": function(data) {
             console.log(data);
-            alert(JSON.stringify(data));
+            alert(JSON.stringify(data, 0, 4));
         }
     });
 });
@@ -151,14 +145,14 @@ $("#stop-recording").click(function (e) {
         "contentType": "application/json",
         "success": function (data) {
             console.log(data);
-            alert(JSON.stringify(data));
+            alert(JSON.stringify(data, 0, 4));
             $("#stop-recording").hide();
             $("#play-recording").show();
 
         },
         "error": function(data) {
             console.log(data);
-            alert(JSON.stringify(data));
+            alert(JSON.stringify(data, 0, 4));
         }
     });
 
@@ -176,7 +170,7 @@ $("#play-recording").click(function (e) {
             console.log(data);
 
             if(data.url === null) {
-               alert("click on the play-recoding-button again, as server is still saving the recording");
+               alert("Recording is not available yet. Please try again after a few seconds.");
             } else {
                 recordingURL = data.url;
                 window.open(recordingURL, '_blank');
@@ -186,28 +180,8 @@ $("#play-recording").click(function (e) {
         },
         "error": function(data) {
             console.log(data);
-            alert(JSON.stringify(data));
+            alert(JSON.stringify(data, 0, 4));
         }
     });
-
 });
 
-$("#debug").click(function(e) {
-    e.preventDefault();
-
-    if(subscriber) {
-        console.log('here');
-        subscriber.getStats(function(err, data) {
-            if(err) {
-                alert("Error getting Debug Info.");
-            } else {
-                console.log("getStats() data");
-                console.log(data);
-
-
-            }
-        });
-    } else {
-        alert("Session not yet subscribed!");
-    }
-});
