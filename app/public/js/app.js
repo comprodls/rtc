@@ -23,7 +23,7 @@ var recordingURL = "", session, subscriber, debugInfo = {}, dropdown;
 function handleError(error) {
   if (error) {
     resetUI();
-    alert(JSON.stringify(error, 0, 4));
+    console.log(error);
   }
 }
 
@@ -34,6 +34,7 @@ function resetUI() {
     $("#connect").show();
     $("#disconnect").hide();
     $("#start-recording").prop("disabled", true);
+    $("#modal-text").text('');
 }
 
 
@@ -42,23 +43,30 @@ function initializeSession(apiKey, sessionId, token) {
 
   // Subscribe to a newly created stream
   session.on("streamCreated", function(event) {
-    subscriber = session.subscribe(event.stream, "subscriber", {
-      insertMode: "append",
-      width: "100%",
-      height: "100%"
-    }, handleError);
     debugInfo["ice-servers"] = event.target.sessionInfo.iceServers;
     debugInfo["priority-video-codec"] = event.target.sessionInfo.priorityVideoCodec;
     debugInfo["media-server-name"] = event.target.sessionInfo.mediaServerName;
-    subscriber.getStats(function(err, data) {
-      if(!err) { debugInfo.stats = data; }
-    });
+
     debugInfo["destroyed-reason"] = event.stream.destroyedReason;
     debugInfo["has-audio"] = event.stream.hasAudio;
     debugInfo["has-video"] = event.stream.hasVideo;
 
-    var a = JSON.stringify(debugInfo, 0, 4);
-    $("#debug-body").html("<pre style='height: 100%'>" + a + "</pre>");
+    subscriber = session.subscribe(event.stream, "subscriber", {
+      insertMode: "append",
+      width: "100%",
+      height: "100%"
+    }, function(err) {
+      if(err) {
+        handleError();
+      } else {
+        subscriber.getStats(function(err, data) {
+          if(err) { console.log(err); }
+          if(data) { debugInfo.stats = data; }
+          var a = JSON.stringify(debugInfo, 0, 4);
+          $("#debug-body").html("Debug Info<br><pre style='height: 100%'>" + a + "</pre>");
+        });
+      }
+    });
   });
 
   // Create a publisher
@@ -92,7 +100,7 @@ $("#connect").click(function(e) {
     $("#disconnect").show();
     $("#start-recording").prop("disabled", false);
   } else {
-    alert("Session Already Created. Please disconnect or refresh the page.");
+    console.log("Error: Session Already Created. Please disconnect or refresh the page.");
   }
 
 });
@@ -107,7 +115,7 @@ $("#disconnect").click(function(e) {
         resetUI();
       window.location.reload();
     } else {
-      alert("session not yet started!");
+      console.log("Error: Session not yet started!");
     }
 });
 
@@ -122,14 +130,12 @@ $("#start-recording").click(function (e) {
         "contentType": "application/json",
         "success": function (data) {
             console.log(data);
-            alert(JSON.stringify(data, 0, 4));
             archiveId = data.id;
             $("#start-recording").hide();
             $("#stop-recording").show();
         },
         "error": function(data) {
             console.log(data);
-            alert(JSON.stringify(data, 0, 4));
         }
     });
 });
@@ -145,14 +151,12 @@ $("#stop-recording").click(function (e) {
         "contentType": "application/json",
         "success": function (data) {
             console.log(data);
-            alert(JSON.stringify(data, 0, 4));
             $("#stop-recording").hide();
             $("#play-recording").show();
 
         },
         "error": function(data) {
             console.log(data);
-            alert(JSON.stringify(data, 0, 4));
         }
     });
 
@@ -160,7 +164,7 @@ $("#stop-recording").click(function (e) {
 
 $("#play-recording").click(function (e) {
     e.preventDefault();
-
+    $("#modal-text").text("");
     $.ajax({
         "type": "GET",
         "url": "/api/recording/details?archiveId=" + archiveId,
@@ -170,17 +174,18 @@ $("#play-recording").click(function (e) {
             console.log(data);
 
             if(data.url === null) {
-               alert("Recording is not available yet. Please try again after a few seconds.");
+               $("#modal-text").text("Error: Recording is not available yet. Please try again after a few seconds.");
             } else {
-                recordingURL = data.url;
-                window.open(recordingURL, '_blank');
+              var str = data.url.substring(0, 50);
+              $("#modal-text").html("Here is the recording. URL : <a href=\"" + data.url +
+                                   "\" target=\"_blank\" text-overflow=\"ellipsis\">" + str +
+                                    "...</a>");
                 $("#start-recording").show();
                 $("#play-recording").hide();
             }
         },
         "error": function(data) {
             console.log(data);
-            alert(JSON.stringify(data, 0, 4));
         }
     });
 });
