@@ -1,6 +1,6 @@
 var OpenTok = require('opentok');
-var apiKey = "45965982";
-var apiSecret = "ff63248cb665f7c05779280596fe3dc0a5ac63d4";
+var apiKey = "45978912";
+var apiSecret = "b2568bfedc296bebc357e8084ed07a52e33c6718";
 opentok = new OpenTok(apiKey, apiSecret);
 
 
