@@ -1,12 +1,13 @@
 // replace these values with those generated in your TokBox Account
-var apiKey = "45979002";
+var apiKey = "45978912";
 var sessionId = {
     room_1: "2_MX40NTk2NTk4Mn5-MTUwNzYxMjkzNTIwMX5FRU5nODB0YlRWRkNYYy8wekZKUk1PVnF-fg",
     room_2: "1_MX40NTk2NTk4Mn5-MTUwNzYxMjk3ODU0NH5zaUdjektzS0hWeG5lc1hDSmFKV3BQbTJ-fg",
     room_3: "1_MX40NTk2NTk4Mn5-MTUwNzYxMzAxNTQ0OH5jYmxNVnpodlR2TXh1WW9idHFjSzBVNTR-fg",
     room_4: "1_MX40NTk2NTk4Mn5-MTUwNzYxMzA0MjkxNn50c1lmWVlNWHpGTHoydnZPdTdpY2Fmelp-fg",
     room_5: "1_MX40NTk2NTk4Mn5-MTUwNzYxMzA5MDczNH5XSzA1djIydW54eEhVMmc0eXJ0U0E3dFh-fg",
-    room_6: "1_MX40NTk3OTAwMn5-MTUwNzc5MzkzMTU2M35KdTFYc2NMNSthMlZYZW5JUzhwMXFwMVZ-fg"
+    room_6: "1_MX40NTk3OTAwMn5-MTUwNzc5MzkzMTU2M35KdTFYc2NMNSthMlZYZW5JUzhwMXFwMVZ-fg",
+    room_7: "1_MX40NTk3ODkxMn5-MTUwNzgwNzM4Mjc3MX4yTDVaVDRqOFVIOU5tMHlPcXphRzl0Ui9-fg"
 };
 
 var token = {
@@ -15,7 +16,8 @@ var token = {
     room_3: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9ZTM1OWY5YzQxZTM5YTRiNGY4OGI1ZjU5ZTc3Y2RhMDgyOGM5ZmY5YjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TXpBeE5UUTBPSDVqWW14TlZucG9kbFIyVFhoMVdXOWlkSEZqU3pCVk5UUi1mZyZjcmVhdGVfdGltZT0xNTA3NjEzMDI0Jm5vbmNlPTAuNjA3MzY2Nzg0Nzk3MDk0OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA1MDIzJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
     room_4: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9MzRkOWJmZDM1MGEwMDZhNTFlMjUzM2U2NDJjZmE1Y2QxZTNjYzJlZTpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TXpBME1qa3hObjUwYzFsbVdWbE5XSHBHVEhveWRuWlBkVGRwWTJGbWVscC1mZyZjcmVhdGVfdGltZT0xNTA3NjEzMDQ5Jm5vbmNlPTAuNzQ4MjI4ODYwNTM1MTc0MSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA1MDQ5JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
     room_5: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9MWUzZGE3NDk0ODAxMTMzNTdhM2Y2Mjc0NzU0NDEyNTMyOWY0MGZiZjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TXpBNU1EY3pOSDVYU3pBMWRqSXlkVzU0ZUVoVk1tYzBlWEowVTBFM2RGaC1mZyZjcmVhdGVfdGltZT0xNTA3NjEzMDk3Jm5vbmNlPTAuOTQxOTE2MjQ4OTcyNTczMiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA1MDk2JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
-    room_6: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9ZjQzYWJlMWExMjAzNDk5OTlmM2UwZmE0NDU5ZDFmMDM5NTY5MTg2MjpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemM1TXprek1UVTJNMzVLZFRGWWMyTk1OU3RoTWxaWVpXNUpVemh3TVhGd01WWi1mZyZjcmVhdGVfdGltZT0xNTA3NzkzOTQxJm5vbmNlPTAuMjU1MjM2MjgzMDMxODk4NiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMzg1OTQwJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
+    room_6: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9ZjQzYWJlMWExMjAzNDk5OTlmM2UwZmE0NDU5ZDFmMDM5NTY5MTg2MjpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemM1TXprek1UVTJNMzVLZFRGWWMyTk1OU3RoTWxaWVpXNUpVemh3TVhGd01WWi1mZyZjcmVhdGVfdGltZT0xNTA3NzkzOTQxJm5vbmNlPTAuMjU1MjM2MjgzMDMxODk4NiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMzg1OTQwJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
+    room_7: "T1==cGFydG5lcl9pZD00NTk3ODkxMiZzaWc9MmI2YWYyNWE3ZTFhOGQ1ODc0YzUwMGFjYzQ3NWVmODM0YjAzMDU1YTpzZXNzaW9uX2lkPTFfTVg0ME5UazNPRGt4TW41LU1UVXdOemd3TnpNNE1qYzNNWDR5VERWYVZEUnFPRlZJT1U1dE1IbFBjWHBoUnpsMFVpOS1mZyZjcmVhdGVfdGltZT0xNTA3ODA3NDEwJm5vbmNlPTAuNDc2MzgzOTc1ODE4MDY1NyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMzk5NDA5JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
 };
 
 var archiveId = "";
@@ -175,7 +177,7 @@ $("#play-recording").click(function (e) {
         "success": function (data) {
             console.log(data);
 
-            if(data.url === null) {
+            if(data.status !== "uploaded") {
                $("#modal-text").text("Error: Recording is not available yet. Please try again after a few seconds.");
             } else {
               var str = data.url.substring(0, 50);
