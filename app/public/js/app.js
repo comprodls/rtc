@@ -1,4 +1,8 @@
-// replace these values with those generated in your TokBox Account
+// S3 configs
+var awsBaseUrl = "https://s3.amazonaws.com";
+var bucket = "tokbox-bucket";
+var recordingName = "archive.mp4";
+
 // tokbox account - dlsadmin@comprotechnologies.com
 var regularProjectApiKey = 45965982;
 var safariProjectApiKey = 45979002;
@@ -193,13 +197,21 @@ $("#play-recording").click(function (e) {
         "success": function (data) {
             console.log(data);
 
-            if(data.status !== "uploaded") {
-               $("#modal-text").text("Error: Recording is not available yet. Please try again after a few seconds.");
+            var recordingUrl;
+            if(data.status === "available") {
+                recordingUrl = data.url;
+            } else if(data.status === "uploaded") {
+                recordingUrl = awsBaseUrl + "/" + bucket + "/" + roomHashMap[chatRoom].apiKey +
+                            "/" + data.id + "/" + recordingName;
             } else {
-              var str = data.url.substring(0, 50);
-              $("#modal-text").html("Here is the recording. URL : <a href=\"" + data.url +
-                                   "\" target=\"_blank\" text-overflow=\"ellipsis\">" + str +
-                                    "...</a>");
+                $("#modal-text").text("Error: Recording is not available yet. Please try again after a few seconds.");
+            }
+
+            if(recordingUrl) {
+                var str = recordingUrl(0, 50);
+                $("#modal-text").html("Here is the recording. URL : <a href=\"" + recordingUrl +
+                                      "\" target=\"_blank\" text-overflow=\"ellipsis\">" + str +
+                                      "...</a>");
                 $("#start-recording").show();
                 $("#play-recording").hide();
             }
