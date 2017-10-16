@@ -36,7 +36,7 @@ var roomHashMap = {
 };
 
 var archiveId = "";
-var recordingURL = "", session, subscriber, debugInfo = {}, chatRoom;
+var session, subscriber, debugInfo = {}, chatRoom, publishVideo;
 
 // Handling all of our errors here by alerting them
 function handleError(error) {
@@ -57,7 +57,7 @@ function resetUI() {
 }
 
 
-function initializeSession(apiKey, sessionId, token) {
+function initializeSession(apiKey, sessionId, token, publishVideo) {
   session = OT.initSession(apiKey, sessionId);
 
   // Subscribe to a newly created stream
@@ -84,6 +84,15 @@ function initializeSession(apiKey, sessionId, token) {
           var a = JSON.stringify(debugInfo, 0, 4);
           $("#debug-body").html("Debug Info<br><pre style='height: 100%'>" + a + "</pre>");
         });
+
+        if (subscriber.stream.hasVideo) {
+          var imgData = subscriber.getImgData();
+          subscriber.setStyle('backgroundImageURI', imgData);
+        } else {
+          subscriber.setStyle('backgroundImageURI',
+            'https://tokbox.com/img/styleguide/tb-colors-cream.png'
+          );
+        }
       }
     });
   });
@@ -92,7 +101,12 @@ function initializeSession(apiKey, sessionId, token) {
   var publisher = OT.initPublisher("publisher", {
     insertMode: "append",
     width: "100%",
-    height: "100%"
+    height: "100%",
+    publishVideo: publishVideo,
+    name: "Anupam",
+    style: {
+      nameDisplayMode: "on"
+    }
   }, handleError);
 
   // Connect to the session
@@ -113,10 +127,12 @@ $("#connect").click(function(e) {
     chatRoom = $("#chat_rooms").val();
       console.log("chatRoom = " + chatRoom);
       console.log("apiKey = " + roomHashMap[chatRoom].apiKey);
+    publishVideo = $("#audio-only");
+    publishVideo = publishVideo[0].checked;
 
     // Call to initialise session
     initializeSession(roomHashMap[chatRoom].apiKey, roomHashMap[chatRoom].sessionId,
-                      roomHashMap[chatRoom].token);
+                      roomHashMap[chatRoom].token, !publishVideo);
 
     $("#connect").hide();
     $("#disconnect").show();
@@ -208,7 +224,7 @@ $("#play-recording").click(function (e) {
             }
 
             if(recordingUrl) {
-                var str = recordingUrl(0, 50);
+                var str = recordingUrl.substring(0, 50);
                 $("#modal-text").html("Here is the recording. URL : <a href=\"" + recordingUrl +
                                       "\" target=\"_blank\" text-overflow=\"ellipsis\">" + str +
                                       "...</a>");
