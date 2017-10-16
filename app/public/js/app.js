@@ -1,25 +1,38 @@
 // replace these values with those generated in your TokBox Account
-var apiKey = "45979002";
-var sessionId = {
-    room_1: "2_MX40NTk3OTAwMn5-MTUwNzg5MTYyNDM0M35pbWVkM3Uzc2YrYmVndlFWUGlLd2JOdzJ-fg",
-    room_2: "1_MX40NTk2NTk4Mn5-MTUwNzYxMjk3ODU0NH5zaUdjektzS0hWeG5lc1hDSmFKV3BQbTJ-fg",
-    room_3: "1_MX40NTk2NTk4Mn5-MTUwNzYxMzAxNTQ0OH5jYmxNVnpodlR2TXh1WW9idHFjSzBVNTR-fg",
-    room_4: "1_MX40NTk3OTAwMn5-MTUwNzc5MzkzMTU2M35KdTFYc2NMNSthMlZYZW5JUzhwMXFwMVZ-fg",
-    room_5: "2_MX40NTk3OTAwMn5-MTUwNzg3MzcyMDg2OX5pK0swbkpET2RwVW40TmQ4bGxMM2tjMkt-fg",
-    room_6: "1_MX40NTk3ODkxMn5-MTUwNzgwNzM4Mjc3MX4yTDVaVDRqOFVIOU5tMHlPcXphRzl0Ui9-fg"
-};
+// tokbox account - dlsadmin@comprotechnologies.com
+var regularProjectApiKey = 45965982;
+var safariProjectApiKey = 45979002;
 
-var token = {
-    room_1: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9ZDI4YWYyY2M2MGU1MTVhMjdjZGQxYWQ5N2E4YzljOGM3MTk2ZjMyNjpzZXNzaW9uX2lkPTJfTVg0ME5UazNPVEF3TW41LU1UVXdOemc1TVRZeU5ETTBNMzVwYldWa00zVXpjMllyWW1WbmRsRldVR2xMZDJKT2R6Si1mZyZjcmVhdGVfdGltZT0xNTA3ODkxNjMwJm5vbmNlPTAuNjIxNjkwMTQxMjMzNDQ1MiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTA3ODk1MjI5JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
-    room_2: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9MDk2YWE4MzhiOTY0YTg1NDNiZjhkYjhkN2E3ZDBjM2IyZDkzOTZhNjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TWprM09EVTBOSDV6YVVkamVrdHpTMGhXZUc1bGMxaERTbUZLVjNCUWJUSi1mZyZjcmVhdGVfdGltZT0xNTA3NjEyOTg4Jm5vbmNlPTAuOTExNzM3ODcwNzEyNjEzNiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA0OTg3JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
-    room_3: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9ZTM1OWY5YzQxZTM5YTRiNGY4OGI1ZjU5ZTc3Y2RhMDgyOGM5ZmY5YjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOell4TXpBeE5UUTBPSDVqWW14TlZucG9kbFIyVFhoMVdXOWlkSEZqU3pCVk5UUi1mZyZjcmVhdGVfdGltZT0xNTA3NjEzMDI0Jm5vbmNlPTAuNjA3MzY2Nzg0Nzk3MDk0OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMjA1MDIzJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
-    room_4: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9ZjQzYWJlMWExMjAzNDk5OTlmM2UwZmE0NDU5ZDFmMDM5NTY5MTg2MjpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemM1TXprek1UVTJNMzVLZFRGWWMyTk1OU3RoTWxaWVpXNUpVemh3TVhGd01WWi1mZyZjcmVhdGVfdGltZT0xNTA3NzkzOTQxJm5vbmNlPTAuMjU1MjM2MjgzMDMxODk4NiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMzg1OTQwJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
-    room_5: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9NDVjM2VhODk5ZWRhYmE5ZGI5OWE1MjkzYmNhMTNhYTYyMmZlMDM3NzpzZXNzaW9uX2lkPTJfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjeU1EZzJPWDVwSzBzd2JrcEVUMlJ3Vlc0MFRtUTRiR3hNTTJ0ak1rdC1mZyZjcmVhdGVfdGltZT0xNTA3ODczNzQ3Jm5vbmNlPTAuOTg3MTYyNDkwNjIwNTM0MyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwNDY1NzQ2JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9",
-    room_6: "T1==cGFydG5lcl9pZD00NTk3ODkxMiZzaWc9MmI2YWYyNWE3ZTFhOGQ1ODc0YzUwMGFjYzQ3NWVmODM0YjAzMDU1YTpzZXNzaW9uX2lkPTFfTVg0ME5UazNPRGt4TW41LU1UVXdOemd3TnpNNE1qYzNNWDR5VERWYVZEUnFPRlZJT1U1dE1IbFBjWHBoUnpsMFVpOS1mZyZjcmVhdGVfdGltZT0xNTA3ODA3NDEwJm5vbmNlPTAuNDc2MzgzOTc1ODE4MDY1NyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwMzk5NDA5JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
+var roomHashMap = {
+    regular_room_1: {
+        apiKey: regularProjectApiKey,
+        sessionId: "1_MX40NTk2NTk4Mn5-MTUwNzg3MzU5NDI2NX5JVE5LNnNIZzhWL01BdFhlYlVyR0prTEJ-fg",
+        token: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9NWZlMWVkZjk1N2JmYzZiN2IxNTIwMTJkYmNlNTBiMzFhNjBlZTVlNjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOemczTXpVNU5ESTJOWDVKVkU1TE5uTklaemhXTDAxQmRGaGxZbFZ5UjBwclRFSi1mZyZjcmVhdGVfdGltZT0xNTA3ODczNjI5Jm5vbmNlPTAuMzkwNjM3ODIzODAzOTYzODQmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUxMDQ2NTYyNCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+    },
+    regular_room_2: {
+        apiKey: regularProjectApiKey,
+        sessionId: "2_MX40NTk2NTk4Mn5-MTUwNzg3MzY0NTk2MH5QM1A5YnlEdS94OXNJandSRjd6NEduTm9-fg",
+        token: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9M2E3ODQzMDcxYzdlY2I4NjE5OWUwYzM0OGU3OWZiOTg3YWYyYzdiZDpzZXNzaW9uX2lkPTJfTVg0ME5UazJOVGs0TW41LU1UVXdOemczTXpZME5UazJNSDVRTTFBNVlubEVkUzk0T1hOSmFuZFNSamQ2TkVkdVRtOS1mZyZjcmVhdGVfdGltZT0xNTA3ODczNjYzJm5vbmNlPTAuMTY4MzE1MjExMjU2NzgxMTcmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUxMDQ2NTY2MiZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+    },
+    regular_room_3: {
+        apiKey: regularProjectApiKey,
+        sessionId: "1_MX40NTk2NTk4Mn5-MTUwNzg3MzY4MjI4NH4yMHY5dkJNaVc1cDZEc1dvampmbW5xVHN-fg",
+        token: "T1==cGFydG5lcl9pZD00NTk2NTk4MiZzaWc9NzRlMWNkMzdiMjZiMzU2YjZhMzJjMDA2ZTM3MDRlNDA2ZGE0MTFiNjpzZXNzaW9uX2lkPTFfTVg0ME5UazJOVGs0TW41LU1UVXdOemczTXpZNE1qSTROSDR5TUhZNWRrSk5hVmMxY0RaRWMxZHZhbXBtYlc1eFZITi1mZyZjcmVhdGVfdGltZT0xNTA3ODczNjk1Jm5vbmNlPTAuODk5NDIyNjI4MzYzNTM0NyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwNDY1Njk1JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
+    },
+    safari_room_1: {
+        apiKey: safariProjectApiKey,
+        sessionId: "2_MX40NTk3OTAwMn5-MTUwNzg3MzcyMDg2OX5pK0swbkpET2RwVW40TmQ4bGxMM2tjMkt-fg",
+        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9YWEzZDg1NGRiMDZkMTMzOGM0YzY0M2Q5NTE4NWI5M2EzODMyMmIyNTpzZXNzaW9uX2lkPTJfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjeU1EZzJPWDVwSzBzd2JrcEVUMlJ3Vlc0MFRtUTRiR3hNTTJ0ak1rdC1mZyZjcmVhdGVfdGltZT0xNTA4MTMzODY2Jm5vbmNlPTAuMDk5MzU5NjE2NzM1OTU0NzMmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwODIyMDI2MyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+    },
+    safari_room_2: {
+        apiKey: safariProjectApiKey,
+        sessionId: "1_MX40NTk3OTAwMn5-MTUwNzg3Mzc2MTcxMH5qZXJTTWNTcWxieTI4Q1lBb2dhSnJCUzR-fg",
+        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9NWE3MzYwNTU5NDUwZWVlMzJmOTYxNGI0ZjZjZWMzZTA0OTQ5NWJiNDpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjMk1UY3hNSDVxWlhKVFRXTlRjV3hpZVRJNFExbEJiMmRoU25KQ1V6Ui1mZyZjcmVhdGVfdGltZT0xNTA4MTM0MDU4Jm5vbmNlPTAuMjczMTExNzYxMDcxNTcxODcmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwODIyMDQ1NSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+    }
 };
 
 var archiveId = "";
-var recordingURL = "", session, subscriber, debugInfo = {}, dropdown;
+var recordingURL = "", session, subscriber, debugInfo = {}, chatRoom;
 
 // Handling all of our errors here by alerting them
 function handleError(error) {
@@ -93,10 +106,13 @@ $("#connect").click(function(e) {
 
   if(!session) {
     e.preventDefault();
-    dropdown = $("#chat_rooms").val();
+    chatRoom = $("#chat_rooms").val();
+      console.log("chatRoom = " + chatRoom);
+      console.log("apiKey = " + roomHashMap[chatRoom].apiKey);
 
     // Call to initialise session
-    initializeSession(apiKey, sessionId[dropdown], token[dropdown]);
+    initializeSession(roomHashMap[chatRoom].apiKey, roomHashMap[chatRoom].sessionId,
+                      roomHashMap[chatRoom].token);
 
     $("#connect").hide();
     $("#disconnect").show();
@@ -106,7 +122,6 @@ $("#connect").click(function(e) {
   }
 
 });
-
 
 $("#disconnect").click(function(e) {
     e.preventDefault();
@@ -127,7 +142,8 @@ $("#start-recording").click(function (e) {
 
     $.ajax({
         "type": "GET",
-        "url": "/api/recording/start?sessionId=" + sessionId[dropdown],
+        "url": "/api/recording/start?apiKey=" + roomHashMap[chatRoom].apiKey +
+                                    "&sessionId=" + roomHashMap[chatRoom].sessionId,
         "dataType": "json",
         "contentType": "application/json",
         "success": function (data) {
@@ -148,7 +164,8 @@ $("#stop-recording").click(function (e) {
 
      $.ajax({
         "type": "GET",
-        "url": "/api/recording/stop?archiveId=" + archiveId,
+        "url": "/api/recording/stop?apiKey=" + roomHashMap[chatRoom].apiKey +
+                                    "&archiveId=" + archiveId,
         "dataType": "json",
         "contentType": "application/json",
         "success": function (data) {
@@ -169,7 +186,8 @@ $("#play-recording").click(function (e) {
     $("#modal-text").text("");
     $.ajax({
         "type": "GET",
-        "url": "/api/recording/details?archiveId=" + archiveId,
+        "url": "/api/recording/details?apiKey=" + roomHashMap[chatRoom].apiKey +
+                                    "&archiveId=" + archiveId,
         "dataType": "json",
         "contentType": "application/json",
         "success": function (data) {

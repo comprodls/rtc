@@ -1,50 +1,46 @@
-var OpenTok = require('opentok');
-var apiKey = "45979002";
-var apiSecret = "cba8b72f6b5f8320c7e517f29fab5a102ecd49d4";
-
-var opentok;
-
+var openTok = require("./opentok-custom.js");
 
 exports.startRecording = function (req, res, next) {
-
+  console.log("Inside startRecording function");
   var sessionId = req.query.sessionId;
-  opentok = new OpenTok(apiKey, apiSecret);
-  opentok.startArchive(sessionId, { name: 'Important Presentation' }, function(err, archive) {
+  var OT = openTok.getOpentokHandle(req.query.apiKey);
+
+  OT.startArchive(sessionId, { name: 'Important Presentation' }, function(err, archive) {
       if (err) {
-        return res.status(200).send(err);
+        next(err);
       } else {
         // The id property is useful to save off into a database
-        return res.status(200).send(archive);
+        res.status(200).send(archive);
       }
   });
 };
 
 exports.stopRecording = function (req, res, next) {
-
+  console.log("Inside stopRecording function");
   var archiveId = req.query.archiveId;
+  var OT = openTok.getOpentokHandle(req.query.apiKey);
 
-  opentok.stopArchive(archiveId, function(err, archive) {
+  OT.stopArchive(archiveId, function(err, archive) {
       if (err) {
-          return res.status(200).send(err);
+          next(err);
       } else {
-          return res.status(200).send(archive);
+          res.status(200).send(archive);
       }
   });
 
 };
 
 exports.getRecording = function (req, res, next) {
-
+  console.log("Inside getRecording function");
   var archiveId = req.query.archiveId;
+  var OT = openTok.getOpentokHandle(req.query.apiKey);
 
-  opentok.getArchive(archiveId, function(err, archive) {
+  OT.getArchive(archiveId, function(err, archive) {
       if (err) {
-          return res.status(200).send(err);
+          next(err);
       } else {
-          return res.status(200).send(archive);
+          res.status(200).send(archive);
       }
   });
 
 };
-
-
