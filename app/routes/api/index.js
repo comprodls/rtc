@@ -1,13 +1,14 @@
 var OpenTok = require('opentok');
-var apiKey = "45978912";
-var apiSecret = "b2568bfedc296bebc357e8084ed07a52e33c6718";
-opentok = new OpenTok(apiKey, apiSecret);
+var apiKey = "45979002";
+var apiSecret = "cba8b72f6b5f8320c7e517f29fab5a102ecd49d4";
+
+var opentok;
 
 
 exports.startRecording = function (req, res, next) {
 
   var sessionId = req.query.sessionId;
-
+  opentok = new OpenTok(apiKey, apiSecret);
   opentok.startArchive(sessionId, { name: 'Important Presentation' }, function(err, archive) {
       if (err) {
         return res.status(200).send(err);
