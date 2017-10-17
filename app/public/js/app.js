@@ -1,4 +1,8 @@
-// replace these values with those generated in your TokBox Account
+// S3 configs
+var awsBaseUrl = "https://s3.amazonaws.com";
+var bucket = "vhl-demo";
+var recordingName = "archive.mp4";
+
 // tokbox account - dlsadmin@comprotechnologies.com
 var regularProjectApiKey = 45965982;
 var safariProjectApiKey = 45979002;
@@ -22,17 +26,17 @@ var roomHashMap = {
     safari_room_1: {
         apiKey: safariProjectApiKey,
         sessionId: "2_MX40NTk3OTAwMn5-MTUwNzg3MzcyMDg2OX5pK0swbkpET2RwVW40TmQ4bGxMM2tjMkt-fg",
-        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9YWEzZDg1NGRiMDZkMTMzOGM0YzY0M2Q5NTE4NWI5M2EzODMyMmIyNTpzZXNzaW9uX2lkPTJfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjeU1EZzJPWDVwSzBzd2JrcEVUMlJ3Vlc0MFRtUTRiR3hNTTJ0ak1rdC1mZyZjcmVhdGVfdGltZT0xNTA4MTMzODY2Jm5vbmNlPTAuMDk5MzU5NjE2NzM1OTU0NzMmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwODIyMDI2MyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9OWQyY2QxZDdiOWQwZGI5Y2E5YWM4MjVlMWEyMGI2ZjY1MzdmODUzMDpzZXNzaW9uX2lkPTJfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjeU1EZzJPWDVwSzBzd2JrcEVUMlJ3Vlc0MFRtUTRiR3hNTTJ0ak1rdC1mZyZjcmVhdGVfdGltZT0xNTA4MjIwNTMxJm5vbmNlPTAuNTY4OTk3OTMxMzY4MTI1JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1MTA4MTI1MjkmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0="
     },
     safari_room_2: {
         apiKey: safariProjectApiKey,
         sessionId: "1_MX40NTk3OTAwMn5-MTUwNzg3Mzc2MTcxMH5qZXJTTWNTcWxieTI4Q1lBb2dhSnJCUzR-fg",
-        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9NWE3MzYwNTU5NDUwZWVlMzJmOTYxNGI0ZjZjZWMzZTA0OTQ5NWJiNDpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjMk1UY3hNSDVxWlhKVFRXTlRjV3hpZVRJNFExbEJiMmRoU25KQ1V6Ui1mZyZjcmVhdGVfdGltZT0xNTA4MTM0MDU4Jm5vbmNlPTAuMjczMTExNzYxMDcxNTcxODcmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwODIyMDQ1NSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9NTkyOGU5YzA0NmU3YTIyY2E2OTZmNzVkMWQ4NjdmOGQwYjcxNmU5MzpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjMk1UY3hNSDVxWlhKVFRXTlRjV3hpZVRJNFExbEJiMmRoU25KQ1V6Ui1mZyZjcmVhdGVfdGltZT0xNTA4MjIwNTU0Jm5vbmNlPTAuNzk0NzQ4OTc3NzMyNTQ4OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwODEyNTUzJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
     }
 };
 
 var archiveId = "";
-var recordingURL = "", session, subscriber, debugInfo = {}, chatRoom;
+var session, subscriber, debugInfo = {}, chatRoom, audioOnly;
 
 // Handling all of our errors here by alerting them
 function handleError(error) {
@@ -53,7 +57,7 @@ function resetUI() {
 }
 
 
-function initializeSession(apiKey, sessionId, token) {
+function initializeSession(apiKey, sessionId, token, publishVideo) {
   session = OT.initSession(apiKey, sessionId);
 
   // Subscribe to a newly created stream
@@ -78,8 +82,16 @@ function initializeSession(apiKey, sessionId, token) {
           if(err) { console.log(err); }
           if(data) { debugInfo.stats = data; }
           var a = JSON.stringify(debugInfo, 0, 4);
-          $("#debug-body").html("Debug Info<br><pre style='height: 100%'>" + a + "</pre>");
+          $("#debug-body").html("Debug Info<br><pre style='height: 98%'>" + a + "</pre>");
         });
+
+        if (subscriber.stream.hasVideo) {
+          var imgData = subscriber.getImgData();
+          subscriber.setStyle("backgroundImageURI", imgData);
+        } else {
+          subscriber.setStyle("backgroundImageURI",
+            "https://yt3.ggpht.com/-XasXu4GveZU/AAAAAAAAAAI/AAAAAAAAAAA/CDFNDspUDV0/s900-c-k-no-mo-rj-c0xffffff/photo.jpg");
+        }
       }
     });
   });
@@ -88,7 +100,12 @@ function initializeSession(apiKey, sessionId, token) {
   var publisher = OT.initPublisher("publisher", {
     insertMode: "append",
     width: "100%",
-    height: "100%"
+    height: "100%",
+    publishVideo: publishVideo,
+    style: {
+      nameDisplayMode: "on",
+      backgroundImageURI: "https://yt3.ggpht.com/-XasXu4GveZU/AAAAAAAAAAI/AAAAAAAAAAA/CDFNDspUDV0/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
+    }
   }, handleError);
 
   // Connect to the session
@@ -107,12 +124,16 @@ $("#connect").click(function(e) {
   if(!session) {
     e.preventDefault();
     chatRoom = $("#chat_rooms").val();
-      console.log("chatRoom = " + chatRoom);
-      console.log("apiKey = " + roomHashMap[chatRoom].apiKey);
+    console.log("chatRoom = " + chatRoom);
+    console.log("apiKey = " + roomHashMap[chatRoom].apiKey);
+    audioOnly = $("#audio-only").val();
+    audioOnly = (audioOnly === "true") ? true : false ;
+    console.log("Publish Video:");
+    console.log(!audioOnly);
 
     // Call to initialise session
     initializeSession(roomHashMap[chatRoom].apiKey, roomHashMap[chatRoom].sessionId,
-                      roomHashMap[chatRoom].token);
+                      roomHashMap[chatRoom].token, !audioOnly);
 
     $("#connect").hide();
     $("#disconnect").show();
@@ -129,7 +150,7 @@ $("#disconnect").click(function(e) {
     if(session) {
       session.disconnect();
       session = null;
-        resetUI();
+      resetUI();
       window.location.reload();
     } else {
       console.log("Error: Session not yet started!");
@@ -193,13 +214,21 @@ $("#play-recording").click(function (e) {
         "success": function (data) {
             console.log(data);
 
-            if(data.status !== "uploaded") {
-               $("#modal-text").text("Error: Recording is not available yet. Please try again after a few seconds.");
+            var recordingUrl;
+            if(data.status === "available") {
+                recordingUrl = data.url;
+            } else if(data.status === "uploaded") {
+                recordingUrl = awsBaseUrl + "/" + bucket + "/" + roomHashMap[chatRoom].apiKey +
+                            "/" + data.id + "/" + recordingName;
             } else {
-              var str = data.url.substring(0, 50);
-              $("#modal-text").html("Here is the recording. URL : <a href=\"" + data.url +
-                                   "\" target=\"_blank\" text-overflow=\"ellipsis\">" + str +
-                                    "...</a>");
+                $("#modal-text").text("Error: Recording is not available yet. Please try again after a few seconds.");
+            }
+
+            if(recordingUrl) {
+                var str = recordingUrl.substring(0, 50);
+                $("#modal-text").html("Here is the recording. URL : <a href=\"" + recordingUrl +
+                                      "\" target=\"_blank\" text-overflow=\"ellipsis\">" + str +
+                                      "...</a>");
                 $("#start-recording").show();
                 $("#play-recording").hide();
             }
