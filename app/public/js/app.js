@@ -87,11 +87,10 @@ function initializeSession(apiKey, sessionId, token, publishVideo) {
 
         if (subscriber.stream.hasVideo) {
           var imgData = subscriber.getImgData();
-          subscriber.setStyle('backgroundImageURI', imgData);
+          subscriber.setStyle("backgroundImageURI", imgData);
         } else {
-          subscriber.setStyle('backgroundImageURI',
-            'https://tokbox.com/img/styleguide/tb-colors-cream.png'
-          );
+          subscriber.setStyle("backgroundImageURI",
+            "https://yt3.ggpht.com/-XasXu4GveZU/AAAAAAAAAAI/AAAAAAAAAAA/CDFNDspUDV0/s900-c-k-no-mo-rj-c0xffffff/photo.jpg");
         }
       }
     });
@@ -103,9 +102,9 @@ function initializeSession(apiKey, sessionId, token, publishVideo) {
     width: "100%",
     height: "100%",
     publishVideo: publishVideo,
-    name: "Anupam",
     style: {
-      nameDisplayMode: "on"
+      nameDisplayMode: "on",
+      backgroundImageURI: "https://yt3.ggpht.com/-XasXu4GveZU/AAAAAAAAAAI/AAAAAAAAAAA/CDFNDspUDV0/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
     }
   }, handleError);
 
