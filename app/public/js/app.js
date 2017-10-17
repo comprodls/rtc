@@ -1,6 +1,6 @@
 // S3 configs
 var awsBaseUrl = "https://s3.amazonaws.com";
-var bucket = "tokbox-bucket";
+var bucket = "vhl-demo";
 var recordingName = "archive.mp4";
 
 // tokbox account - dlsadmin@comprotechnologies.com
@@ -26,12 +26,12 @@ var roomHashMap = {
     safari_room_1: {
         apiKey: safariProjectApiKey,
         sessionId: "2_MX40NTk3OTAwMn5-MTUwNzg3MzcyMDg2OX5pK0swbkpET2RwVW40TmQ4bGxMM2tjMkt-fg",
-        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9YWEzZDg1NGRiMDZkMTMzOGM0YzY0M2Q5NTE4NWI5M2EzODMyMmIyNTpzZXNzaW9uX2lkPTJfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjeU1EZzJPWDVwSzBzd2JrcEVUMlJ3Vlc0MFRtUTRiR3hNTTJ0ak1rdC1mZyZjcmVhdGVfdGltZT0xNTA4MTMzODY2Jm5vbmNlPTAuMDk5MzU5NjE2NzM1OTU0NzMmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwODIyMDI2MyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9OWQyY2QxZDdiOWQwZGI5Y2E5YWM4MjVlMWEyMGI2ZjY1MzdmODUzMDpzZXNzaW9uX2lkPTJfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjeU1EZzJPWDVwSzBzd2JrcEVUMlJ3Vlc0MFRtUTRiR3hNTTJ0ak1rdC1mZyZjcmVhdGVfdGltZT0xNTA4MjIwNTMxJm5vbmNlPTAuNTY4OTk3OTMxMzY4MTI1JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1MTA4MTI1MjkmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0="
     },
     safari_room_2: {
         apiKey: safariProjectApiKey,
         sessionId: "1_MX40NTk3OTAwMn5-MTUwNzg3Mzc2MTcxMH5qZXJTTWNTcWxieTI4Q1lBb2dhSnJCUzR-fg",
-        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9NWE3MzYwNTU5NDUwZWVlMzJmOTYxNGI0ZjZjZWMzZTA0OTQ5NWJiNDpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjMk1UY3hNSDVxWlhKVFRXTlRjV3hpZVRJNFExbEJiMmRoU25KQ1V6Ui1mZyZjcmVhdGVfdGltZT0xNTA4MTM0MDU4Jm5vbmNlPTAuMjczMTExNzYxMDcxNTcxODcmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwODIyMDQ1NSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
+        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9NTkyOGU5YzA0NmU3YTIyY2E2OTZmNzVkMWQ4NjdmOGQwYjcxNmU5MzpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjMk1UY3hNSDVxWlhKVFRXTlRjV3hpZVRJNFExbEJiMmRoU25KQ1V6Ui1mZyZjcmVhdGVfdGltZT0xNTA4MjIwNTU0Jm5vbmNlPTAuNzk0NzQ4OTc3NzMyNTQ4OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwODEyNTUzJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
     }
 };
 
