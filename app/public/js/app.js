@@ -82,7 +82,7 @@ function initializeSession(apiKey, sessionId, token, publishVideo) {
           if(err) { console.log(err); }
           if(data) { debugInfo.stats = data; }
           var a = JSON.stringify(debugInfo, 0, 4);
-          $("#debug-body").html("Debug Info<br><pre style='height: 100%'>" + a + "</pre>");
+          $("#debug-body").html("Debug Info<br><pre style='height: 98%'>" + a + "</pre>");
         });
 
         if (subscriber.stream.hasVideo) {
