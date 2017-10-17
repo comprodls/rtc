@@ -4,7 +4,9 @@
 }
 
 #heading {
+    width: -moz-fit-content;
     font-size: 30px;
+    display: inline;
 }
 
 #header {
@@ -17,8 +19,8 @@
 }
 
 #controls {
-    float: right;
-    margin-right: 5%;
+    display: inline;
+    margin-left: 50px;
 }
 
 #parent-videos {
@@ -69,12 +71,19 @@
 }
 
 .panel-body {
-  word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 #chat_rooms {
-  width: 150px;
-  height: 45px;
+    width: 150px;
+    height: 45px;
+    color: black;
+}
+
+#audio-only {
+    width: 200px;
+    height: 45px;
+    color: black;
 }
 
 .input-box {

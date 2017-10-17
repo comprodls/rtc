@@ -10,14 +10,21 @@
 
     <div id="document">
         <div id="header">
-            <span id="heading">VHL Chat Tool | WebRTC Demo</span>
-            <span id="controls">
-                 <select id="chat_rooms" style="color: black;">
+            <div id="heading">
+                <span >VHL Chat Tool | WebRTC Demo</span>
+            </div>
+
+            <div id="controls">
+                 <select id="chat_rooms">
                      <option value="regular_room_1">Room 1</option>
                      <option value="regular_room_2">Room 2</option>
                      <option value="regular_room_3">Room 3</option>
                      <option value="safari_room_1">VHL Safari Room 1</option>
                      <option value="safari_room_2">VHL Safari Room 2</option>
+                </select>
+                <select id="audio-only">
+                    <option value="false">Share my video & audio</option>
+                    <option value="true">Don't share video (audio only)</option>
                 </select>
                 <button id="connect" type="button" class="btn btn-info btn-lg">Connect</button>
                 <button id="disconnect" type="button" class="btn btn-info btn-lg" style="display:none;">Disconnect</button>
@@ -25,7 +32,7 @@
                 <button id="start-recording" type="button" class="btn btn-info btn-lg" disabled="true">Start Recording</button>
                 <button id="stop-recording" type="button" class="btn btn-info btn-lg" style="display:none;">Stop Recording</button>
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="play-recording" style="display:none;">Play Recording</button>
-            </span>
+            </div>
         </div>
         <div id="parent-videos">
             <div id="videos">
@@ -33,10 +40,6 @@
                 <div id="publisher"></div>
             </div>
             <div id="info-bar">
-                <div class="checkbox">
-                    <label class="input-box"><input type="checkbox" id="audio-only" value="">Audio Only</label>
-                    <label class="input-box"><input type="checkbox" id="img-bg" value="">Image Background</label>
-                </div>
                 <div class="panel panel-default" style="margin: 2%;">
                     <div class="panel-body" id="debug-body" style="height: 600px;">Debug Info</div>
                 </div>

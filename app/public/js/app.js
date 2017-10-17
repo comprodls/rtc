@@ -36,7 +36,7 @@ var roomHashMap = {
 };
 
 var archiveId = "";
-var session, subscriber, debugInfo = {}, chatRoom, publishVideo;
+var session, subscriber, debugInfo = {}, chatRoom, audioOnly;
 
 // Handling all of our errors here by alerting them
 function handleError(error) {
@@ -125,14 +125,16 @@ $("#connect").click(function(e) {
   if(!session) {
     e.preventDefault();
     chatRoom = $("#chat_rooms").val();
-      console.log("chatRoom = " + chatRoom);
-      console.log("apiKey = " + roomHashMap[chatRoom].apiKey);
-    publishVideo = $("#audio-only");
-    publishVideo = publishVideo[0].checked;
+    console.log("chatRoom = " + chatRoom);
+    console.log("apiKey = " + roomHashMap[chatRoom].apiKey);
+    audioOnly = $("#audio-only").val();
+    audioOnly = (audioOnly === "true") ? true : false ;
+    console.log("Publish Video:");
+    console.log(!audioOnly);
 
     // Call to initialise session
     initializeSession(roomHashMap[chatRoom].apiKey, roomHashMap[chatRoom].sessionId,
-                      roomHashMap[chatRoom].token, !publishVideo);
+                      roomHashMap[chatRoom].token, !audioOnly);
 
     $("#connect").hide();
     $("#disconnect").show();
@@ -149,7 +151,7 @@ $("#disconnect").click(function(e) {
     if(session) {
       session.disconnect();
       session = null;
-        resetUI();
+      resetUI();
       window.location.reload();
     } else {
       console.log("Error: Session not yet started!");
