@@ -36,7 +36,7 @@ var roomHashMap = {
 };
 
 var archiveId = "";
-var session, subscriber, debugInfo = {}, chatRoom, audioOnly;
+var session, subscriber, debugInfo = {}, chatRoom, audioOnly, name ="";
 
 // Handling all of our errors here by alerting them
 function handleError(error) {
@@ -102,6 +102,7 @@ function initializeSession(apiKey, sessionId, token, publishVideo) {
     width: "100%",
     height: "100%",
     publishVideo: publishVideo,
+    name: name,
     style: {
       nameDisplayMode: "on",
       backgroundImageURI: "https://yt3.ggpht.com/-XasXu4GveZU/AAAAAAAAAAI/AAAAAAAAAAA/CDFNDspUDV0/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
@@ -130,6 +131,7 @@ $("#connect").click(function(e) {
     audioOnly = (audioOnly === "true") ? true : false ;
     console.log("Publish Video:");
     console.log(!audioOnly);
+    name = $("#name").val();
 
     // Call to initialise session
     initializeSession(roomHashMap[chatRoom].apiKey, roomHashMap[chatRoom].sessionId,
