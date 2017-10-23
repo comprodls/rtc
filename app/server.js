@@ -24,6 +24,7 @@ app.use("/lib", express.static(path.join(__dirname, "../dist")));
 app.use("/api/recording/start", api.startRecording);
 app.use("/api/recording/stop", api.stopRecording);
 app.use("/api/recording/details", api.getRecording);
+app.use("/api/token", api.createToken);
 
 
 

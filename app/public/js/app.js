@@ -31,12 +31,17 @@ var roomHashMap = {
     safari_room_2: {
         apiKey: safariProjectApiKey,
         sessionId: "1_MX40NTk3OTAwMn5-MTUwNzg3Mzc2MTcxMH5qZXJTTWNTcWxieTI4Q1lBb2dhSnJCUzR-fg",
-        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9NTkyOGU5YzA0NmU3YTIyY2E2OTZmNzVkMWQ4NjdmOGQwYjcxNmU5MzpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjMk1UY3hNSDVxWlhKVFRXTlRjV3hpZVRJNFExbEJiMmRoU25KQ1V6Ui1mZyZjcmVhdGVfdGltZT0xNTA4MjIwNTU0Jm5vbmNlPTAuNzk0NzQ4OTc3NzMyNTQ4OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTEwODEyNTUzJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
+        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9ZjZmYjNkY2RmYTZjYWZkNmE5M2IxZjZjODQzMDJiMmU1NTRmM2FjMjpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjMk1UY3hNSDVxWlhKVFRXTlRjV3hpZVRJNFExbEJiMmRoU25KQ1V6Ui1mZyZjcmVhdGVfdGltZT0xNTA4NzYyMDMxJm5vbmNlPTAuMzQzNDI2NDE2OTIyNzExNSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTExMzU0MDMwJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
+    },
+    safari_room_3: {
+        apiKey: safariProjectApiKey,
+        sessionId: "1_MX40NTk3OTAwMn5-MTUwNzg3Mzc2MTcxMH5qZXJTTWNTcWxieTI4Q1lBb2dhSnJCUzR-fg",
+        token: "T1==cGFydG5lcl9pZD00NTk3OTAwMiZzaWc9NWNhM2VjZGZmYTg1ZGExYmExMmNhNWVmOGFjYzk4YjQzNWNjMWNiNjpzZXNzaW9uX2lkPTFfTVg0ME5UazNPVEF3TW41LU1UVXdOemczTXpjMk1UY3hNSDVxWlhKVFRXTlRjV3hpZVRJNFExbEJiMmRoU25KQ1V6Ui1mZyZjcmVhdGVfdGltZT0xNTA4NzYyMDAxJm5vbmNlPTAuNTAzODIyNzExNzE5NDEyMyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTExMzUzOTk5JmNvbm5lY3Rpb25fZGF0YT0lN0IlMEFpbml0aWFsTGF5b3V0Q2xhc3NMaXN0JTIwJTNBJTIwJTVCJ2ZvY3VzJyU1RCUwQSU3RCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
     }
 };
 
-var archiveId = "";
-var session, subscriber, debugInfo = {}, chatRoom, audioOnly, name ="";
+var archiveId = "", sessionId, token;
+var session, subscriber, debugInfo = {}, chatRoom, audioOnly, name ="", token;
 
 // Handling all of our errors here by alerting them
 function handleError(error) {
@@ -58,6 +63,10 @@ function resetUI() {
 
 
 function initializeSession(apiKey, sessionId, token, publishVideo) {
+
+  console.log(apiKey)
+  console.log(sessionId)
+  console.log(token)
   session = OT.initSession(apiKey, sessionId);
 
   // Subscribe to a newly created stream
@@ -122,6 +131,8 @@ function initializeSession(apiKey, sessionId, token, publishVideo) {
 
 $("#connect").click(function(e) {
 
+
+
   if(!session) {
     e.preventDefault();
     chatRoom = $("#chat_rooms").val();
@@ -132,14 +143,35 @@ $("#connect").click(function(e) {
     console.log("Publish Video:");
     console.log(!audioOnly);
     name = $("#name").val();
+    var layoutClass = $("#layout-class").val();
 
-    // Call to initialise session
-    initializeSession(roomHashMap[chatRoom].apiKey, roomHashMap[chatRoom].sessionId,
-                      roomHashMap[chatRoom].token, !audioOnly);
+    $.ajax({
+        "type": "GET",
+        "url": "/api/token?layoutClass=" + layoutClass,
+        "dataType": "json",
+        "contentType": "application/json",
+        "success": function (data) {
+          console.log("connect success data");
+          console.log(data);
+          sessionId = data.sessionId;
+          token = data.token;
+            // Call to initialise session
+          initializeSession(roomHashMap[chatRoom].apiKey, sessionId,
+                            token, !audioOnly);
+          $("#connect").hide();
+          $("#disconnect").show();
+          $("#start-recording").prop("disabled", false);
+        },
+        "error": function(data) {
+            console.log(data);
+        }
+    });
 
-    $("#connect").hide();
-    $("#disconnect").show();
-    $("#start-recording").prop("disabled", false);
+
+
+//    $("#publisher").html("<img src=\"https://images.pexels.com/photos/167762/pexels-photo-167762.jpeg?h=350&auto=compress&cs=tinysrgb\">");
+
+
   } else {
     console.log("Error: Session Already Created. Please disconnect or refresh the page.");
   }
@@ -166,7 +198,8 @@ $("#start-recording").click(function (e) {
     $.ajax({
         "type": "GET",
         "url": "/api/recording/start?apiKey=" + roomHashMap[chatRoom].apiKey +
-                                    "&sessionId=" + roomHashMap[chatRoom].sessionId,
+                                    "&sessionId=" + sessionId +
+                                    "&layoutType=pip",
         "dataType": "json",
         "contentType": "application/json",
         "success": function (data) {
