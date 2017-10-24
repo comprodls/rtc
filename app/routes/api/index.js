@@ -4,8 +4,14 @@ exports.startRecording = function (req, res, next) {
   console.log("Inside startRecording function");
   var sessionId = req.query.sessionId;
   var OT = openTok.getOpentokHandle(req.query.apiKey);
-
-  OT.startArchive(sessionId, { name: 'Important Presentation' }, function(err, archive) {
+  var options = {
+    name: "Important Presentation",
+    outputMode: "composed",
+    "layout": {
+      "type": "pip"
+    }
+  };
+  OT.startArchive(sessionId, options, function(err, archive) {
       if (err) {
         next(err);
       } else {
