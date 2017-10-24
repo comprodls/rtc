@@ -1,5 +1,20 @@
 var openTok = require("./opentok-custom.js");
 
+exports.generateToken = function (req, res, next) {
+  console.log("Inside generateToken function");
+
+  var sessionId = req.params.sessionid;
+  var OT = openTok.getOpentokHandle(req.query.apiKey);
+  var options = {
+    role: 'publisher',
+    expireTime: (new Date().getTime() / 1000)+(7 * 24 * 60 * 60), // in one week
+    data: 'name=Johnny',
+    initialLayoutClassList: ['full']
+  };
+  var token = OT.generateToken(sessionId, options);
+  res.status(200).send({token: token});
+};
+
 exports.startRecording = function (req, res, next) {
   console.log("Inside startRecording function");
   var sessionId = req.query.sessionId;

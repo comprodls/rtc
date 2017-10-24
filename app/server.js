@@ -25,6 +25,8 @@ app.use("/api/recording/start", api.startRecording);
 app.use("/api/recording/stop", api.stopRecording);
 app.use("/api/recording/details", api.getRecording);
 
+app.post("/api/session/:sessionid/token", api.generateToken);
+
 
 
 // Home Page
