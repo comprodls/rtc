@@ -10,6 +10,7 @@
     "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "opentok": "^2.6.0",
+    "opentok-token": "^1.1.0",
     "path": "^0.12.7"
   },
   "devDependencies": {

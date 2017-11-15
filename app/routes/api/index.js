@@ -6,10 +6,13 @@ exports.generateToken = function (req, res, next) {
   var sessionId = req.params.sessionid;
   var OT = openTok.getOpentokHandle(req.query.apiKey);
   var options = {
-    role: 'publisher',
+    role: "publisher",
     expireTime: (new Date().getTime() / 1000)+(7 * 24 * 60 * 60), // in one week
-    data: 'name=Johnny',
-    initialLayoutClassList: ['full']
+    initialLayoutClassList: ["full"],
+    data: JSON.stringify({ name: "anupam",
+      role: "developer",
+      uuid: "123456"
+    })
   };
   var token = OT.generateToken(sessionId, options);
   res.status(200).send({token: token});
@@ -21,10 +24,7 @@ exports.startRecording = function (req, res, next) {
   var OT = openTok.getOpentokHandle(req.query.apiKey);
   var options = {
     name: "Important Presentation",
-    outputMode: "composed",
-    "layout": {
-      "type": "pip"
-    }
+    outputMode: "individual"
   };
   OT.startArchive(sessionId, options, function(err, archive) {
       if (err) {

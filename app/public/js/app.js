@@ -57,6 +57,8 @@ function initializeSession(apiKey, sessionId, publishVideo) {
 
     // Subscribe to a newly created stream
     session.on("streamCreated", function(event) {
+      console.log("event");
+      console.log(event, 0, 4);
       debugInfo["ice-servers"] = event.target.sessionInfo.iceServers;
       debugInfo["priority-video-codec"] = event.target.sessionInfo.priorityVideoCodec;
       debugInfo["media-server-name"] = event.target.sessionInfo.mediaServerName;
@@ -64,6 +66,8 @@ function initializeSession(apiKey, sessionId, publishVideo) {
       debugInfo["destroyed-reason"] = event.stream.destroyedReason;
       debugInfo["has-audio"] = event.stream.hasAudio;
       debugInfo["has-video"] = event.stream.hasVideo;
+
+      console.log("inside event handler before session.connect");
 
       subscriber = session.subscribe(event.stream, "subscriber", {
         insertMode: "append",
@@ -91,6 +95,24 @@ function initializeSession(apiKey, sessionId, publishVideo) {
       });
     });
 
+    session.on("archiveStarted", function(data) {
+                console.log("archiveStarted");
+                console.log(data);
+                // TODO - Send Notification
+            });
+    session.on("archiveStopped", function(data) {
+                console.log("archiveSttopped");
+                console.log(data);
+                // TODO - Send Notification
+            });
+  session.on("sessionDisconnected", function(data) {
+    console.log("session Disconnected!");
+    console.log(data);
+  });
+
+
+
+
     // Create a publisher
     var publisher = OT.initPublisher("publisher", {
       insertMode: "append",
@@ -104,10 +126,14 @@ function initializeSession(apiKey, sessionId, publishVideo) {
       }
     }, handleError);
 
+    console.log("publisher");
+    console.log(publisher);
+
+  var layoutClass = "";
     console.log("@@@@@@@@@@@@@")
     $.ajax({
         "type": "POST",
-        "url": "/api/session/" + sessionId + "/token?apiKey=" + roomHashMap[chatRoom].apiKey,
+        "url": "/api/session/" + sessionId + "/token?apiKey=" + roomHashMap[chatRoom].apiKey + "&layoutClass=" + layoutClass,
         "dataType": "json",
         "contentType": "application/json",
         "success": function (data) {
@@ -154,6 +180,7 @@ $("#disconnect").click(function(e) {
     e.preventDefault();
 
     if(session) {
+      console.log("disconnecting session");
       session.disconnect();
       session = null;
       resetUI();
@@ -174,6 +201,7 @@ $("#start-recording").click(function (e) {
         "dataType": "json",
         "contentType": "application/json",
         "success": function (data) {
+          console.log('archive');
             console.log(data);
             archiveId = data.id;
             $("#start-recording").hide();
